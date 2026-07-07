@@ -1,67 +1,20 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-)
+import "fmt"
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
+	belanja, isMember := ReadInput()
 
-	var (
-		belanja  int
-		isMember bool
-		err      error
-	)
-	for {
-		fmt.Println("======= My Store =======")
-		
-		// input nominal belanja
-		fmt.Print("Belanja: ")
-		inputBelanja, _ := reader.ReadString('\n')               // baca input user
-		inputBelanja = strings.TrimSpace(inputBelanja)           // hapus spasi di awal dan akhir
-		belanja, err = strconv.Atoi(inputBelanja)
-		// validasi input belanja
-		if err != nil {
-			fmt.Println("Input harus berupa angka. Silakan coba lagi")
-			continue
-		}
-		if belanja <= 0 {
-			fmt.Println("Input harus lebih besar dari 0. Silakan coba lagi")
-			continue
-		}
-		
-		// input status member
-		fmt.Print("Member: (Ya/Tidak): ")
-		inputMember, _ := reader.ReadString('\n')    // baca input user
-		inputMember = strings.TrimSpace(inputMember) // hapus spasi di awal dan akhir
-		inputMember = strings.ToLower(inputMember)   // ubah input menjadi huruf kecil
-		
-		// validasi input member
-		switch inputMember {
-		case "ya", "y":
-			isMember = true
-		case "tidak", "t":
-			isMember = false
-		default:
-			fmt.Println("Input tidak valid. Silakan coba lagi")
-			continue
-		}
-		
-		fmt.Println("------------------------")
-		fmt.Println("Diskon Belanja:")
-		fmt.Println("Diskon Member:")
-		fmt.Println("Totak diskon:")
-		
-		fmt.Println("------------------------")
-		fmt.Println("Total Belanja:")
+	diskonBelanja, diskonMember, totalDiskon := HitungDiskonBelanja(belanja, isMember)
+	voucher := 20000
+	totalBelanja := belanja - totalDiskon - voucher
 
-		break
-	}
+	fmt.Println("------------------------")
+	fmt.Println("Diskon Belanja: Rp.", diskonBelanja)
+	fmt.Println("Diskon Member : Rp.", diskonMember)
+	fmt.Println("Total Diskon  : Rp.", totalDiskon)
+	fmt.Println("Voucher       : Rp.", voucher)
 
-	println("Belanja:", belanja)
-	println("Member:", isMember)
+	fmt.Println("------------------------")
+	fmt.Println("Total Pembayaran : Rp.", totalBelanja)
 }

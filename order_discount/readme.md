@@ -4,3 +4,5 @@ asumsi:
 2. diskon belanja dan diskon member dihitung secara independent, bukan secara compounding. contoh: belanja Rp. 200.000 dengan status member. diskon belanja dihitung 10% dari total belanja, dan diskon member dihitung 5% dari total belanja juga, bukan 5% dari sisa belanja setelah diskon belanja diterapkan
 
 3. diskon maksimal 30% hanya berlaku untuk total diskon belanja + diskon member, tidak termasuk dengan potongan voucher 
+
+4. voucher Rp. 20.000 diasumsikan otomatis diterapkan disetiap transaksi

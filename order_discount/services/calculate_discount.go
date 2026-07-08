@@ -17,6 +17,7 @@ func CalculateDiscount(purchaseAmount int, isMember bool) (int, int, int) {
 		memberDiscount = purchaseAmount * 5 / 100
 	}
 
+	// Calculate total discount before cap
 	totalDiscount := purchaseDiscount + memberDiscount
 
 	// Apply 30% maximum discount cap

@@ -18,8 +18,8 @@ func main() {
 		fmt.Println("3. Transfer ke rekening lain")
 		fmt.Println("4. Keluar")
 
-		pilihan := ReadInput()
-		switch pilihan {
+		choice := ReadInput()
+		switch choice {
 		case 1:
 			// Handle withdraw transaction
 			amount := ReadAmount()

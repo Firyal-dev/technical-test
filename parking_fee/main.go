@@ -14,12 +14,7 @@ func main() {
 		return
 	}
 
-	// Round up: any partial hour counts as a full hour for billing
-	roundedHours := durationHours
-	if durationMinutes > 0 {
-		roundedHours = durationHours + 1
-	}
-	parkingFee := services.CalculateParkingFee(roundedHours)
+	parkingFee := services.CalculateParkingFee(durationHours, durationMinutes)
 
 	fmt.Println("------------------------")
 	fmt.Printf("Durasi Parkir: %d jam %d menit\n", durationHours, durationMinutes)

@@ -13,8 +13,8 @@ func ReadInput() int {
 	reader := bufio.NewReader(os.Stdin)
 
 	var (
-		pilihan int
-		err     error
+		choice int
+		err    error
 	)
 	for {
 		fmt.Print("Pilihan: ")
@@ -23,19 +23,19 @@ func ReadInput() int {
 		input = strings.TrimSpace(input)
 		
 		// Parse input to integer
-		pilihan, err = strconv.Atoi(input)
+		choice, err = strconv.Atoi(input)
 		if err != nil {
 			fmt.Println("input harus berupa angka")
 			continue
 		}
 		
 		// Validate menu choice is within valid range
-		if pilihan < 1 || pilihan > 4 {
+		if choice < 1 || choice > 4 {
 			fmt.Println("pilihan tidak valid. Silakan pilih antara 1 hingga 4")
 			continue
 		}
 
-		return pilihan
+		return choice
 	}
 }
 
@@ -62,7 +62,7 @@ func ReadAmount() int {
 		
 		// Validate amount is positive
 		if amount <= 0 {
-			fmt.Println("nominal harus diatas 0")
+			fmt.Println("nominal harus lebih besar dari 0")
 			continue
 		}
 

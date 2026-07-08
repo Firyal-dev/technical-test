@@ -1,20 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/Firyal-dev/order-discount/services"
+)
 
 func main() {
-	belanja, isMember := ReadInput()
+	purchaseAmount, isMember := ReadInput()
 
-	diskonBelanja, diskonMember, totalDiskon := HitungDiskonBelanja(belanja, isMember)
-	voucher := 20000
-	totalBelanja := belanja - totalDiskon - voucher
+	// Calculate all applicable discounts
+	purchaseDiscount, memberDiscount, totalDiscount := services.CalculateDiscount(purchaseAmount, isMember)
+	voucherAmount := 20000
 
-	fmt.Println("------------------------")
-	fmt.Println("Diskon Belanja: Rp.", diskonBelanja)
-	fmt.Println("Diskon Member : Rp.", diskonMember)
-	fmt.Println("Total Diskon  : Rp.", totalDiskon)
-	fmt.Println("Voucher       : Rp.", voucher)
+	// Apply discounts and voucher to get final payment amount
+	finalAmount := purchaseAmount - totalDiscount - voucherAmount
 
 	fmt.Println("------------------------")
-	fmt.Println("Total Pembayaran : Rp.", totalBelanja)
+	fmt.Println("Diskon Belanja: Rp.", purchaseDiscount)
+	fmt.Println("Diskon Member : Rp.", memberDiscount)
+	fmt.Println("Total Diskon  : Rp.", totalDiscount)
+	fmt.Println("Voucher       : Rp.", voucherAmount)
+
+	fmt.Println("------------------------")
+	fmt.Println("Total Pembayaran : Rp.", finalAmount)
 }
